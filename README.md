@@ -6,7 +6,7 @@ A simple project using plain javascript and jQuery to access MongoDB database AP
 
 ## Framework
 * Bootstrapped with [create-react-app](https://github.com/facebookincubator/create-react-app)
-* Documentation [DOCS.md](https://github.com/binzu/jamming/blob/master/developing-components-in-isolation.md)
+* Documentation [DOCS.md](https://github.com/binzu/jamming/blob/master/DOCS.md)
 
 ## Author
 [Vince Golveo](https://vincegolveo.com/)
