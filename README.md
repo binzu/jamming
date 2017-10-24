@@ -1,5 +1,5 @@
-# Binzu jamming
-A simple project using plain javascript and jQuery to access MongoDB database API endpoints and display in an html page.
+# Binzu Jamming
+A React web app that searches and saves tracks to Spotify.
 
 ## Demo Page
 * [http://binzu-jamming.surge.sh/](http://binzu-jamming.surge.sh/)
