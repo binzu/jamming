@@ -8,23 +8,17 @@ class Track extends Component {
       classes: `Track-action ${this.props.onAdd ? 'isAdd' : 'isRemoval'}`
     };
 
-    // this.renderAction = this.renderAction.bind(this);
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
   }
-  // renderAction() {
-  //   return !this.props.onAdd ? '-' : '+';
-  // }
 
   addTrack() {
-    console.log('add track with id: ',this.props.track.id);
     if (this.props.onAdd) {
       this.props.onAdd(this.props.track);
     }
   }
 
   removeTrack() {
-    console.log('remove track with id: ',this.props.track.id);
     if (this.props.onRemove) {
       this.props.onRemove(this.props.track);
     }

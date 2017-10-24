@@ -9,23 +9,10 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-
-    console.log('app pathname: ', window.location.href);
-
     this.state = {
-      searchResults: [
-        { id:1, name: 'Lorem', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:4iV5W9uYEdYUVa79Axb7Rh' },
-        { id:2, name: 'Lorem', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:4iV5W9uYEdYUVa79Axb7Rh' },
-        { id:3, name: 'Lorem', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:4iV5W9uYEdYUVa79Axb7Rh' },
-        { id:4, name: 'Lorem new', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:4iV5W9uYEdYUVa79Axb7Rh' },
-        { id:5, name: 'Lorem new 2', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:4iV5W9uYEdYUVa79Axb7Rh' }
-      ],
-      playListName: 'My Playlist',
-      playlistTracks: [
-        { id:1, name: 'Lorem', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:3W3KtDwAIg3mAruSpnfG3Q' },
-        { id:2, name: 'Lorem', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:7b71WsDLb8gG0cSyDTFAEW' },
-        { id:3, name: 'Lorem', artist: 'Impsum', album: 'Dolor', uri:'spotify:track:4iV5W9uYEdYUVa79Axb7Rh' }
-      ]
+      searchResults: [],
+      playListName: 'New Playlist',
+      playlistTracks: []
     }
 
     this.addTrack = this.addTrack.bind(this);
@@ -39,7 +26,6 @@ class App extends Component {
   addTrack(track) {
     let playlist = this.state.playlistTracks;
     let index = playlist.findIndex(x => x.id === track.id);
-    console.log('found track index: ', index);
     // check if it exists in playlist
     if (index === -1) {
       playlist.push(track);
@@ -52,7 +38,6 @@ class App extends Component {
   removeTrack(track) {
     let playlist = this.state.playlistTracks;
     let index = playlist.findIndex(x => x.id === track.id);
-    console.log('found track index: ', index);
     if (index > -1) {
       playlist.splice(index,1);
       this.setState({playlistTracks:playlist});
@@ -71,19 +56,18 @@ class App extends Component {
       return track.uri;
     });
     Spotify.savePlaylist(this.state.playListName, trackURIs).then((results) => {
-      console.log('saved: ', results);
-      this.setState({searchResults: []});
-      this.updatePlaylistName('');
-    });
-    // console.log('saved: ', this.state.playListName, this.state.playlistTracks);
+        this.setState({
+            searchResults: [],
+            playListName: 'New Playlist',
+            playlistTracks: []
+        });
+      });
   }
 
   // search Spotify
   search(term) {
-    console.log('search term: ',term);
     Spotify.search(term).then((results) => {
       if (results) {
-        console.log('search app tracks: ', results);
         this.setState({ searchResults: results });
       }
     })
